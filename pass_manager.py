@@ -1,12 +1,20 @@
 import hashlib
 
 
+# if master password = the secret key, provide access
+
+
+
 def add_password():
     svc = input("Enter Service: ")
     user = input("Enter your username: ")
     pwd = input("Enter your password: ")
 
     # -Take password, encode, run through hashing algorithm, and store in database
+    # Take password, generate a Fernet.generate_key()
+    # create Fernet(key) object and store in variable
+    # pass = Fernet(key).encrypt(b"our_password")
+    # store pass in DB
     # -Access function in database script to add to DB
 
 
@@ -23,6 +31,10 @@ def update_password():
     # executve this line
     # if new_pwd == con_pwd:
     # encode new_password
+    # Take password, generate a Fernet.generate_key()
+    # create Fernet(key) object and store in variable
+    # pass = Fernet(key).encrypt(b"our_password")
+    # store pass in DB
     # run through hash algo
     # update password
     # update new pwd in DB
@@ -51,15 +63,6 @@ def display_all():
     # display onto screen
     # closing functionality
     pass
-
-# This script will execute the essential functionality of our password manager
-# Take in 4 inputs,
-# username
-# password
-# website
-# email
-# provide ability to open PW_Manager to see how many passwords exist
-
 
 # basic functionality
 
@@ -97,3 +100,13 @@ def display_all():
 # TODO:
 # Decide whether I want store all passwords in DB hidden by master password...
 # OR decide whether I want master password, and all passwords under a layer of encryption - research how to do this
+
+# Methods of Encryption
+
+# Kalle takes password, encrypts it, stores in db.
+# On retrival, encrypted password is retrived. No decryption process?
+# decide levels of encryption
+
+# Other guy adds password to database on selection of menu option, in add password command, he inserts the secret key into DB
+# then returns a generated password
+

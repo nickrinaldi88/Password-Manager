@@ -13,6 +13,7 @@ import string
 import secrets
 # secrets is used for generating cryptographically strong random numbers for managing such such as passwords, etc.
 
+
 our_list = [x for x in range(11)]
 
 # variable to hold the alphabet
@@ -33,4 +34,10 @@ print(m.block_size)
 # any entered password must be 'encoded' before we hash it
 # look up how to encode a string
 
-# how to encrypt a string in python
+# Might not need to use hashlib, cryptography library may do own encryption
+
+# Do I want database to store string password or encrypted password?
+# - Google
+# Do I need to encrypt every password, or just encrypt one master password
+
+# does encryption take place, then variable sent to DB?
