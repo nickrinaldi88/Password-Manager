@@ -111,7 +111,10 @@ def display_all():
 # then returns a generated password
 
 # How do secret keys keep original password form
+<<<<<<< HEAD
 
 # a salt is used for python to keep the original form?
 
 
+=======
+>>>>>>> 076f7f0735bcb423033805a9958adef6fed25a12

@@ -18,6 +18,7 @@ pw = crypter.encrypt(b"Hersheygreen1!")
 
 # decrypt the pw
 
+<<<<<<< HEAD
 decrypt_str = crypter.decrypt(pw)
 
 print(type(pw))
@@ -25,10 +26,21 @@ print(pw)
 
 print(decrypt_str)
 
+=======
+# decrypt_str = crypter2.decrypt(pw)
+
+print(type(pw))
+print(str(pw))
+
+>>>>>>> 076f7f0735bcb423033805a9958adef6fed25a12
 
 # String is different everytime code is run. Everytime we encrypt, the encryption is different
 # how can we we uncover the original string if the encrypted string is different
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 076f7f0735bcb423033805a9958adef6fed25a12
 # "We can recover the encrypted message using the same key that we used to
 # encrypt into it's original form"
 
