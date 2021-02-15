@@ -34,4 +34,13 @@
 -password manager
 	-import menu
 	-works behind the scenes of menu
-	-runs functions based on input on the menu script
+	-runs functions based on input on the menu script 
+
+TODO:
+
+1 - Fill out functions in pass_manager.py
+2 - Refresh memory on SQLlite, install the database
+3. Run a test that stores our encrypted password into our SQL database, and successfully retrieves into
+4 - Organize menu to display properly
+5 - Ultimately decide whether cryptography is enough encryption
+6 - Figure out how a master password works

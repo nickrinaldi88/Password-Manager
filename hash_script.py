@@ -1,15 +1,6 @@
 import hashlib
-# implements a common interface to many different secure hash and message digest algo's
-# secure hash and message digest are interchangeable
-# a hash: a long string of apparently random numbers and letters
-# hashes are the output of a hashing algo like MD5(message digest 5) or SHA(secure hash algo)
-# These algos aim to produce a unique fixed-length sring - the hash value, or message digest
-# for any given piece of data.
-# Hashes cannot be reversed, however they allow you to determine whether two files are identical or not w/o knowing anything about their contents
-
 
 import string
-
 import secrets
 # secrets is used for generating cryptographically strong random numbers for managing such such as passwords, etc.
 
@@ -24,12 +15,14 @@ alphabet = string.ascii_letters + string.digits + string.punctuation
 
 password = ''.join(secrets.choice(alphabet) for i in range(8))
 
+print(password)
+
 # print(password)
 
 m = hashlib.sha256()
 m.update(b"hello")
 
-print(m.block_size)
+print(m)
 
 # any entered password must be 'encoded' before we hash it
 # look up how to encode a string

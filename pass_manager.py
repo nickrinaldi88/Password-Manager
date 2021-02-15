@@ -1,14 +1,29 @@
 import hashlib
-import
+from cryptography.fernet import Fernet
+import time
+import db_manager
 
 
 # if master password = the secret key, provide access
+
+# create key
+
+key = Fernet.generate_key()
+
+crypter = Fernet(key) # create Fernet object
 
 
 def add_password():
     svc = input("Enter Service: ")
     user = input("Enter your username: ")
     pwd = input("Enter your password: ")
+
+    # encode password
+    pwd_en = pwd.encode()
+
+    crypter.encrypt(pwd_en)
+
+    # store in databsae
 
     # -Take password, encode, run through hashing algorithm, and store in database
     # Take password, generate a Fernet.generate_key()
