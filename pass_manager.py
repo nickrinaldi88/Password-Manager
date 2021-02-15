@@ -1,8 +1,8 @@
 import hashlib
+import
 
 
 # if master password = the secret key, provide access
-
 
 
 def add_password():
@@ -109,4 +109,9 @@ def display_all():
 
 # Other guy adds password to database on selection of menu option, in add password command, he inserts the secret key into DB
 # then returns a generated password
+
+# How do secret keys keep original password form
+
+# a salt is used for python to keep the original form?
+
 

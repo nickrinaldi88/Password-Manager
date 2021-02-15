@@ -18,11 +18,21 @@ pw = crypter.encrypt(b"Hersheygreen1!")
 
 # decrypt the pw
 
-decrypt_str = crypter2.decrypt(pw)
+decrypt_str = crypter.decrypt(pw)
 
+print(type(pw))
 print(pw)
 
-print(str(decrypt_str, 'utf-8'))
+print(decrypt_str)
+
+
+# String is different everytime code is run. Everytime we encrypt, the encryption is different
+# how can we we uncover the original string if the encrypted string is different
+
+# "We can recover the encrypted message using the same key that we used to
+# encrypt into it's original form"
+
+# https://codezup.com/encrypt-and-decrypt-string-using-key-in-python/
 
 
 # once we encrypt something, we need to use the same key to decrypt it; can't use a different key
