@@ -18,25 +18,27 @@ encrypted_pw = crypter.encrypt(pw_en)
 
 # encrypt password
 
-with open("our_pass.txt", "w+") as f:
-    f.write(str(encrypted_pw))
+with open("our_pass.txt", "wb") as f:
+    f.write(encrypted_pw)
 
 print("Your encrypted password is: " + str(encrypted_pw) +
       "\n" + "and has been added to the database." + "\n" + "The original password is: " + pw)
-
-time.sleep(2)
 
 
 def view_pw():
 
     while True:
+        # ask for password
         retrieve = input("Want password?: ")
+
         if retrieve != "y":
             break
         else:
-            f = open("our_pass.txt", "r")
+            f = open("our_pass.txt", "rb")
             for line in f:
-                decrypted_pw = crypter.decrypt(line.encode())
+                print(line)
+
+                decrypted_pw = crypter.decrypt(line)
                 if decrypted_pw != "":
                     break
 

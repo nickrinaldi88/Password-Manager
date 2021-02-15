@@ -1,2 +1,2 @@
-
-# once we encrypt something, we need to use the same ke
+byte_pw = line.encode()
+                # print(type(byte_pw))
