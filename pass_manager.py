@@ -10,10 +10,11 @@ import db_manager
 
 key = Fernet.generate_key()
 
-crypter = Fernet(key) # create Fernet object
+crypter = Fernet(key)  # create Fernet object
 
 
 def add_password():
+    print("---------ADD A PASSWORD--------")
     svc = input("Enter Service: ")
     user = input("Enter your username: ")
     pwd = input("Enter your password: ")
@@ -21,41 +22,37 @@ def add_password():
     # encode password
     pwd_en = pwd.encode()
 
-    crypter.encrypt(pwd_en)
+    pwd = crypter.encrypt(pwd_en)
 
-    # store in databsae
+    db_manager.db_add(svc, user, pwd)
 
-    # -Take password, encode, run through hashing algorithm, and store in database
-    # Take password, generate a Fernet.generate_key()
-    # create Fernet(key) object and store in variable
-    # pass = Fernet(key).encrypt(b"our_password")
-    # store pass in DB
-    # -Access function in database script to add to DB
+    # database function, insert(svc, user, pwd)
 
 
 def update_password():
+    print("\n")
     svc = input("Enter the service would you like to update:  ")
     # retrieve data from database/query DB for the service row
-    cur_pwd = input("Please enter the current password for this service: ")
+    # select from table PW_MANAGER, svc, user, pwd
     option = input(
         "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
-    # if option == 1:
+    if option == 1:
+
+        db_grab(svc)
+        cur_pwd = input("Please enter the current password: ")
+
+    # if cur_pwd = pwd.decrypted, print("correct!")
+    # then execute below
     new_pwd = input("Please enter the new password: ")
     con_pwd = input("Please confirm the new password: ")
-    # if cur_pwd == the pwd from the DB:
-    # executve this line
     # if new_pwd == con_pwd:
     # encode new_password
-    # Take password, generate a Fernet.generate_key()
-    # create Fernet(key) object and store in variable
-    # pass = Fernet(key).encrypt(b"our_password")
-    # store pass in DB
-    # run through hash algo
-    # update password
-    # update new pwd in DB
+    # sql.update(pwd, con_pwd)
+
     # elif option == 2:
     ru_sure = input("Are you sure you want to remove this password? (Y/N): ")
     # if Y,
+    # sql.delete, delete row
 
     # delete password/service from database
     # if N,
@@ -68,16 +65,19 @@ def update_password():
 
 def retrieve_password():
     svc = input("Enter the service you want to retrieve the password from: ")
-    # access database, check if svc matches name of service, then display to screen
+    #  select(svc,
+    # access database, check if svc matches name of service,
+    #  then display to screen
     # integrate closing functionality so window closes
     pass
 
 
 def display_all():
-    # retrieve complete table from database
-    # display onto screen
+
+    db_manager.db_add()
+
     # closing functionality
-    pass
+
 
 # basic functionality
 

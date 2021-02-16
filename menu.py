@@ -22,6 +22,18 @@ def login_success():
     print("4. Display all passwords")
     print("5. Exit")
 
+
+while True:
+    login_success()
+    choice = input("Please enter your choice: ")
+    if choice == "1":
+        pass_manager.add_password()
+    elif choice == "2":
+        pass_manager.update_password()
+    elif choice == "5":
+        db_manager.close_db()
+        break
+
     # if 1. is selected, open add new password menu from pass_manager.py
     # if 2. is selected open update password function from pass_manager
     # if 3. is selected open retrieve password function from pass_manager
