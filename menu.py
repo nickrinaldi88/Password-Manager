@@ -2,6 +2,7 @@
 # terminal or Tkinter GUI?
 import time
 import pass_manager
+import db_manager
 
 print("--------Hello---------")
 time.sleep(1)

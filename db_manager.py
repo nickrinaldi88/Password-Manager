@@ -37,7 +37,8 @@ def display_db():
 
 def db_grab(service):
 
-    c.execute('SELECT ')
+    for row in c.execute('SELECT service, password FROM accounts where service == ?', service,):
+        print(row)
 
 
 def close_db():

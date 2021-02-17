@@ -39,7 +39,7 @@ def update_password():
     if option == 1:
 
         db_grab(svc)
-        cur_pwd = input("Please enter the current password: ")
+        # cur_pwd = input("Please enter the current password: ")
 
     # if cur_pwd = pwd.decrypted, print("correct!")
     # then execute below
