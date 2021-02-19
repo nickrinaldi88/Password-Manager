@@ -24,3 +24,7 @@ TODO:
         -post on /r/ python, and /r/learnprogramming
         -Post on stackcodereview
 5. Edit when feedback is returned!
+
+ERRORS:
+-Remove password did not remove password
+-Retrieve password did not display password to screen
