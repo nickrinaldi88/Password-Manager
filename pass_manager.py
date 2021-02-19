@@ -2,6 +2,8 @@ import hashlib
 from cryptography.fernet import Fernet
 import time
 import db_manager
+import test
+import hash_script
 
 
 # if master password = the secret key, provide access
@@ -17,59 +19,61 @@ def add_password():
     print("---------ADD A PASSWORD--------")
     svc = input("Enter Service: ")
     user = input("Enter your username: ")
-    pwd = input("Enter your password: ")
+    pwd = input("Enter your simple password: ")
 
     # encode password
-    pwd_en = pwd.encode()
+    svc = svc.encode()
+    pwd = pwd.encode()
 
-    pwd = crypter.encrypt(pwd_en)
+    # encrypt
 
-    db_manager.db_add(svc, user, pwd)
+    pwd_hex = hash_script.make_password(svc, pwd)
+
+    db_manager.db_add(svc, user, pwd_hex)
 
     # database function, insert(svc, user, pwd)
+
+
+# def print_key():
+#     print(key)
 
 
 def update_password():
     print("\n")
     svc = input("Enter the service would you like to update:  ")
-    # retrieve data from database/query DB for the service row
-    # select from table PW_MANAGER, svc, user, pwd
     option = input(
         "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
+
     if option == 1:
 
-        db_grab(svc)
-        # cur_pwd = input("Please enter the current password: ")
+        new_pwd = input("Enter new password: ")
 
-    # if cur_pwd = pwd.decrypted, print("correct!")
-    # then execute below
-    new_pwd = input("Please enter the new password: ")
-    con_pwd = input("Please confirm the new password: ")
-    # if new_pwd == con_pwd:
-    # encode new_password
-    # sql.update(pwd, con_pwd)
+        time.sleep(1)
+        print("The password for " + svc + " has been updated to: " + new_pwd)
 
-    # elif option == 2:
-    ru_sure = input("Are you sure you want to remove this password? (Y/N): ")
-    # if Y,
-    # sql.delete, delete row
+        db_manager.db_update(svc)
 
-    # delete password/service from database
-    # if N,
-    # continue
+    elif option == 2:
 
-    # close window
-
-    pass
-
+        print("You would like to remove this service from the database..")
+        time.sleep(1)
+        ru_sure = input(
+            "Are you sure you want to remove this password? (Y/N): ")
+        if ru_sure == 'y':
+            time.sleep(1)
+            db_manager.db_remove(svc)
+            print(svc + " has been successfully removed!")
+        elif ru_sure == 'n':
+            print("Returning to menu...")
 
 def retrieve_password():
     svc = input("Enter the service you want to retrieve the password from: ")
+
+    db_manager.db_grab(svc)
     #  select(svc,
     # access database, check if svc matches name of service,
     #  then display to screen
     # integrate closing functionality so window closes
-    pass
 
 
 def display_all():
@@ -79,56 +83,16 @@ def display_all():
     # closing functionality
 
 
-# basic functionality
+# Create master password which will equal our secret key
 
-# When user loads program, ask for master password
+# encrypt passwords our selves
 
-# when master password is entered, provide other options:
-# THE BELOW IS IN THE pass_manager.py script
+# Encryption instructions:
+# 1. take in password
+# 2. provide salt + plaintext pw
+# 3. pass combo through hash algo
+# 4. output hashed password
+# 5. copy to clipboard
+# 4. store hash algo
 
-
-# remove a password
-    # -ask for service to remove
-    # -query DB for the service row
-    # -ask to enter the password
-    # -then ask to confirm to remove
-
-
-# see list of password
-    # display entire db of passwords
-
-
-# while True:
-
-#     password = input("Please entry a password: ")
-#     c_password = input("Please confirm your password: ")
-
-#     if password == c_password:
-#         hashed = hashlib.md5(c_password).hexdigest()
-#         print(hashed)
-#         break
-#     else:
-#         print("The passwords do not match!")
-#         continue
-
-
-# TODO:
-# Decide whether I want store all passwords in DB hidden by master password...
-# OR decide whether I want master password, and all passwords under a layer of encryption - research how to do this
-
-# Methods of Encryption
-
-# Kalle takes password, encrypts it, stores in db.
-# On retrival, encrypted password is retrived. No decryption process?
-# decide levels of encryption
-
-# Other guy adds password to database on selection of menu option, in add password command, he inserts the secret key into DB
-# then returns a generated password
-
-# How do secret keys keep original password form
-
-# a salt is used for python to keep the original form?
-
-
-# THINGS TO ADD:
-# connect to Google Chrome API or something, download json of usernames and passwords, or usernames
+# Storing the plaintext password in DB makes no sense, because it's still easy to hack. A password manager exists to house all your encrypted passwords.

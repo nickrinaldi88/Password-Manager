@@ -1,4 +1,5 @@
 import sqlite3
+import pass_manager
 
 # creation connection object
 
@@ -35,10 +36,36 @@ def display_db():
         print(row)
 
 
+def db_update(service, new_pwd):
+
+    c.execute('UPDATE account SET password= ? WHERE service= ?')
+
+
+def db_remove(service):
+
+    c.execute('DELETE from accounts WHERE servce = ?', (service,))
+
+
 def db_grab(service):
 
-    for row in c.execute('SELECT service, password FROM accounts where service == ?', service,):
-        print(row)
+    # service is being read as 3 characters, rather than one
+
+    for row in c.execute('SELECT service, password FROM accounts where service == ?', (service,)):
+
+        # Invalid Token means the token is literally not valid
+
+
+def print_keys():
+    print("Key in db_manager")
+    print(pass_manager.key)
+    print("\n")
+    print("Pass Manager key")
+    pass_manager.print_key()
+
+
+def delete_row(service):
+    # for row in c.execute(#drop)
+    pass
 
 
 def close_db():

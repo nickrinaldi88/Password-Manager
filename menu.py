@@ -8,7 +8,7 @@ print("--------Hello---------")
 time.sleep(1)
 print("--------Welcome to Your Password Manager----------")
 time.sleep(1)
-pwd = input("---------Please Enter the Master Password: ")
+# pwd = input("---------Please Enter the Master Password: ")
 
 # if pwd == master_password - from hash_script:
 # login_succes()
@@ -25,12 +25,16 @@ def login_success():
 
 
 while True:
-    login_success()
+    login_succ2ess()
     choice = input("Please enter your choice: ")
     if choice == "1":
         pass_manager.add_password()
     elif choice == "2":
         pass_manager.update_password()
+    elif choice == "3":
+        pass_manager.retrieve_password()
+    elif choice == "4":
+        db_manager.print_keys()
     elif choice == "5":
         db_manager.close_db()
         break

@@ -1,27 +1,21 @@
 # generate a secret key master password:
 from cryptography.fernet import Fernet
 import time
+import hashlib
+import binascii
 
-key = Fernet.generate_key()  # create key
-
-# a bytes key
-
-# take in user input for password
-
-pw = input("Please enter your password: ")
-pw_en = pw.encode()  # convert to bytes
+def make_password(salt, pwd):
+    return hashlib.sha256(salt+pwd).hexdigest()
 
 
-crypter = Fernet(key)  # Fernet object
-encrypted_pw = crypter.encrypt(pw_en)
 
 
 # encrypt password
 
 with open("our_pass.txt", "wb") as f:
-    f.write(encrypted_pw)
+    f.write(new_pw.encode())
 
-print("Your encrypted password is: " + str(encrypted_pw) +
+print("Your encrypted password is: " + str(new_pw) +
       "\n" + "and has been added to the database." + "\n" + "The original password is: " + pw)
 
 
@@ -36,18 +30,11 @@ def view_pw():
         else:
             f = open("our_pass.txt", "rb")
             for line in f:
-                print(line)
+                the_pwd = line
 
-                decrypted_pw = crypter.decrypt(line)
-                if decrypted_pw != "":
-                    break
-
-    return decrypted_pw
+    return the_pwd
 
 
-decrypter = view_pw()
-print(decrypter)
+result = view_pw()
 
-# store in database
-# retrieve password
-# decrypt
+print(type(result))

@@ -23,8 +23,7 @@ decrypt_str = crypter.decrypt(pw)
 print(type(pw))
 print(pw)
 
-print(decrypt_str)
-
+print(str(decrypt_str))
 
 
 # "We can recover the encrypted message using the same key that we used to
