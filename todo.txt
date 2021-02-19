@@ -1,0 +1,26 @@
+
+	-use SQLlite; for encryption of DB file and password protection of opening of the DB - https://stackoverflow.com/questions/5669905/sqlite-with-encryption-password-protection/5877130#5877130
+
+TODO:
+
+    - run tests(see if works)
+        -add_password
+        -update_password
+        -remove_password
+        -display_password
+2. Decide on master_password
+    -Will you ask for one or not?
+    -How will you generate the master password
+    -How will you be able to ensure your master password, and the key generated are the same?
+    -Will you need to generate a password every time, or just once?
+    -Maybe, create the master password, and store in safely in the script.
+3. Organize the display
+    -Update menu.py
+    -Google how to make terminal UI symmetrical/fancy
+    -Contemplate Tkinter UI interface
+4. Upload!
+    -Post on /r/learnpython
+        -Also on Python Enthusiasts Discord, Programmers Hangout
+        -post on /r/ python, and /r/learnprogramming
+        -Post on stackcodereview
+5. Edit when feedback is returned!

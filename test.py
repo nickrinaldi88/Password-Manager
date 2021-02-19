@@ -7,9 +7,6 @@ import binascii
 def make_password(salt, pwd):
     return hashlib.sha256(salt+pwd).hexdigest()
 
-
-
-
 # encrypt password
 
 with open("our_pass.txt", "wb") as f:

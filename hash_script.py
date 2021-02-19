@@ -1,7 +1,5 @@
-from cryptography.fernet import Fernet
 import time
 import hashlib
-import binascii
 import string
 
 
@@ -10,5 +8,3 @@ def make_password(salt, pwd):
 
 
 alphabet = string.ascii_letters + string.digits + string.punctuation
-
-print(alphabet)
