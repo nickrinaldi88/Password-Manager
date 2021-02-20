@@ -34,42 +34,51 @@ def add_password():
 
 
 def update_password():
-    print("\n")
-    svc = input("Enter the service would you like to update:  ")
 
-    # encode the service into bytes again
+    while True:
 
-    svc = svc.encode()
-    option = input(
-        "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
+        print("\n")
+        svc = input("Enter the service would you like to update:  ")
 
-    if option == "1":
-        # update :
-        print("You would like to update the password for " +
-              svc.decode('utf-8') + ".")
-        print("------------------------------------------")
-        new_pwd = input("Enter new plain-text password: ")
-        new_pwd = new_pwd.encode()
-        new_pwd_hex = hash_script.make_password(svc, new_pwd)
-        db_manager.db_update(svc, new_pwd_hex)
-        time.sleep(1)
-        print("The password for " + svc.decode("utf-8") +
-              " has been updated to: " + str(new_pwd_hex))
+        # encode the service into bytes again
 
-    elif option == "2":
-        # remove
+        svc = svc.encode()
 
-        print("You would like to remove this service from the database..")
-        print("------------------------------------------")
-        time.sleep(1)
-        ru_sure = input(
-            "Are you sure you want to remove this password? (Y/N): ")
-        if ru_sure == 'y':
+        if db_manager.db_chek(svc):
+            continue
+        else:
+            print("Service does not exist!")
+            break
+        option = input(
+            "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
+
+        if option == "1":
+            # update :
+            print("You would like to update the password for " +
+                  svc.decode('utf-8') + ".")
+            print("------------------------------------------")
+            new_pwd = input("Enter new plain-text password: ")
+            new_pwd = new_pwd.encode()
+            new_pwd_hex = hash_script.make_password(svc, new_pwd)
+            db_manager.db_update(svc, new_pwd_hex)
             time.sleep(1)
-            db_manager.db_remove(svc)
-            print(svc.decode("utf-8") + " has been successfully removed!")
-        elif ru_sure == 'n':
-            print("Returning to menu...")
+            print("The password for " + svc.decode("utf-8") +
+                  " has been updated to: " + str(new_pwd_hex))
+
+        elif option == "2":
+            # remove
+
+            print("You would like to remove this service from the database..")
+            print("------------------------------------------")
+            time.sleep(1)
+            ru_sure = input(
+                "Are you sure you want to remove this password? (Y/N): ")
+            if ru_sure == 'y':
+                time.sleep(1)
+                db_manager.db_remove(svc)
+                print(svc.decode("utf-8") + " has been successfully removed!")
+            elif ru_sure == 'n':
+                print("Returning to menu...")
 
 
 def retrieve_password():
