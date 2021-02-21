@@ -40,8 +40,6 @@ def db_chek(service):
 
     for row in c.execute('SELECT service from accounts WHERE service = ?', (service,)):
         print("Found " + str(row))
-    else:
-        print("Service does not exist!")
 
 
 def db_grab(service):

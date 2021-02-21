@@ -31,7 +31,7 @@ def add_password():
 
     db_manager.db_add(svc, user, pwd_hex)
 
-    print("The password for " + svc.decode("utf-8") + " has been added!")
+    print("The password for " + svc + " has been added!")
 
 
 def update_password():
@@ -45,11 +45,12 @@ def update_password():
 
         svc = svc.encode()
 
-        if db_manager.db_chek(svc):
-            continue
-        else:
-            print("Service does not exist!")
+        try:
+            db_manager.db_chek(svc)
+        except:
+            print("there's an error")
             break
+
         option = input(
             "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
 
@@ -66,6 +67,8 @@ def update_password():
             print("The password for " + svc.decode("utf-8") +
                   " has been updated to: " + str(new_pwd_hex))
 
+            break
+
         elif option == "2":
             # remove
 
@@ -81,6 +84,8 @@ def update_password():
             elif ru_sure == 'n':
                 print("Returning to menu...")
 
+            break
+
 
 def retrieve_password():
 
@@ -88,7 +93,11 @@ def retrieve_password():
         svc = input(
             "Enter the service you want to retrieve the password from: ")
         svc = svc.encode()
-        db_manager.db_chek(svc)
+        try:
+
+            db_manager.db_chek(svc)
+        except:
+            print("There's an error!")
         # if
         #     continue
         # else:

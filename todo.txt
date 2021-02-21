@@ -39,3 +39,6 @@ STEPS TO TROUBLESHOOT
 - Check the data type the service is inserted into the db as 
 - Check what data type the service is upon retrieval 
 - Check what is happening upon db retrieval
+
+-It is possible that the database takes a little bit to load in new addtions.
+-That's why our services aren't being retrieved upon immediate addition
