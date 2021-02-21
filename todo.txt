@@ -27,4 +27,15 @@ TODO:
 
 ERRORS:
 
--Retrieve password does not display password to screen sometimes(Why?)
+-Retrieve password does not display password to screen sometimes(
+
+STEPS TO TROUBLESHOOT
+- We were inserting the encoded service value into the database.
+- Inserting the string into the db still doesn't return the string
+-       Because db_chek was checking the encoded version
+-       The encoded strings are displayed 
+-       Try encoding the service string, pass that to the db function/ Service still does
+            not exist
+- Check the data type the service is inserted into the db as 
+- Check what data type the service is upon retrieval 
+- Check what is happening upon db retrieval

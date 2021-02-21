@@ -22,7 +22,7 @@ def login_success():
 
 while True:
     login_success()
-    choice = input("Please enter you1r choice: ")
+    choice = input("Please enter your choice: ")
     if choice == "1":
         pass_manager.add_password()
     elif choice == "2":

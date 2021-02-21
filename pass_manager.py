@@ -21,16 +21,17 @@ def add_password():
     pwd = input("Enter your simple password: ")
 
     # encode values
-    svc = svc.encode()
-    pwd = pwd.encode()
+    svc_en = svc.encode()
+    pwd_en = pwd.encode()
 
     # make hex
-
-    pwd_hex = hash_script.make_password(svc, pwd)
+    pwd_hex = hash_script.make_password(svc_en, pwd_en)
 
     # add service, username, and hexed pwd to database
 
     db_manager.db_add(svc, user, pwd_hex)
+
+    print("The password for " + svc.decode("utf-8") + " has been added!")
 
 
 def update_password():
@@ -86,6 +87,13 @@ def retrieve_password():
     while True:
         svc = input(
             "Enter the service you want to retrieve the password from: ")
+        svc = svc.encode()
+        db_manager.db_chek(svc)
+        # if
+        #     continue
+        # else:
+        #     print("Service does not exist!")
+        #     break
 
         db_manager.db_grab(svc)
         exit = input("Would you like to exit? ")

@@ -22,7 +22,7 @@ def db_add(service, username, password):
 def display_db():
 
     for row in c.execute('SELECT * FROM accounts'):
-        print(row, row[1].decode())
+        print(row)
 
 
 def db_update(service, new_pwd):
@@ -38,15 +38,18 @@ def db_remove(service):
 
 def db_chek(service):
 
-    c.execute('SELECT EXISTS(SELECT 1 FROM accounts WHERE service = ?)', (service,))
+    for row in c.execute('SELECT service from accounts WHERE service = ?', (service,)):
+        print("Found " + str(row))
+    else:
+        print("Service does not exist!")
 
 
 def db_grab(service):
 
     # service is being read as 3 characters, rather than one
 
-    for row in c.execute('SELECT service, password FROM accounts where service == ?', (service,)):
-        print(row[0], row[1].decode())
+    for row in c.execute('SELECT * FROM accounts where service == ?', (service,)):
+        print(row)
 
 
 def close_db():
