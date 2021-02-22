@@ -2,12 +2,6 @@
 	-use SQLlite; for encryption of DB file and password protection of opening of the DB - https://stackoverflow.com/questions/5669905/sqlite-with-encryption-password-protection/5877130#5877130
 
 TODO:
-
-    - run tests(see if works)
-        -add_password
-        -update_password
-        -remove_password
-        -display_password
 2. Decide on master_password
     -Will you ask for one or not?
     -How will you generate the master password
@@ -28,17 +22,3 @@ TODO:
 ERRORS:
 
 -Retrieve password does not display password to screen sometimes(
-
-STEPS TO TROUBLESHOOT
-- We were inserting the encoded service value into the database.
-- Inserting the string into the db still doesn't return the string
--       Because db_chek was checking the encoded version
--       The encoded strings are displayed 
--       Try encoding the service string, pass that to the db function/ Service still does
-            not exist
-- Check the data type the service is inserted into the db as 
-- Check what data type the service is upon retrieval 
-- Check what is happening upon db retrieval
-
--It is possible that the database takes a little bit to load in new addtions.
--That's why our services aren't being retrieved upon immediate addition

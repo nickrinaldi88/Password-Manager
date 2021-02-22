@@ -43,8 +43,6 @@ def update_password():
 
         # encode the service into bytes again
 
-        svc = svc.encode()
-
         try:
             db_manager.db_chek(svc)
         except:
@@ -57,14 +55,16 @@ def update_password():
         if option == "1":
             # update :
             print("You would like to update the password for " +
-                  svc.decode('utf-8') + ".")
+                  svc + ".")
             print("------------------------------------------")
+
             new_pwd = input("Enter new plain-text password: ")
             new_pwd = new_pwd.encode()
-            new_pwd_hex = hash_script.make_password(svc, new_pwd)
+            new_svc_en = svc.encode()
+            new_pwd_hex = hash_script.make_password(new_svc_en, new_pwd)
             db_manager.db_update(svc, new_pwd_hex)
             time.sleep(1)
-            print("The password for " + svc.decode("utf-8") +
+            print("The password for " + svc +
                   " has been updated to: " + str(new_pwd_hex))
 
             break
@@ -80,7 +80,7 @@ def update_password():
             if ru_sure == 'y':
                 time.sleep(1)
                 db_manager.db_remove(svc)
-                print(svc.decode("utf-8") + " has been successfully removed!")
+                print(svc + " has been successfully removed!")
             elif ru_sure == 'n':
                 print("Returning to menu...")
 
@@ -92,7 +92,8 @@ def retrieve_password():
     while True:
         svc = input(
             "Enter the service you want to retrieve the password from: ")
-        svc = svc.encode()
+        # encoding
+        # svc = svc.encode()
         try:
 
             db_manager.db_chek(svc)

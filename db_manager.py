@@ -21,6 +21,8 @@ def db_add(service, username, password):
 
 def display_db():
 
+    print("Service, Username, Password")
+
     for row in c.execute('SELECT * FROM accounts'):
         print(row)
 
