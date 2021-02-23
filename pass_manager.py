@@ -3,6 +3,7 @@ from cryptography.fernet import Fernet
 import time
 import db_manager
 import hash_script
+import pyperclip
 
 
 # if master password = the secret key, provide access
@@ -30,35 +31,44 @@ def add_password():
     # add service, username, and hexed pwd to database
 
     db_manager.db_add(svc, user, pwd_hex)
+    time.sleep(1)
 
     print("The password for " + svc + " has been added!")
+    print("------------------------------------------")
+    print("\n")
+    time.sleep(1)
 
 
 def update_password():
 
     while True:
-
-        print("\n")
         svc = input("Enter the service would you like to update:  ")
 
-        # encode the service into bytes again
-
         try:
+            print("------------------------------------------")
+            time.sleep(1)
             db_manager.db_chek(svc)
         except:
             print("there's an error")
             break
 
+        print("------------------------------------------")
         option = input(
             "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
 
         if option == "1":
+
+            print("------------------------------------------")
+
+            print("You would like to update the password for " + svc + "."
+                  )
+
             # update :
-            print("You would like to update the password for " +
-                  svc + ".")
+
             print("------------------------------------------")
 
             new_pwd = input("Enter new plain-text password: ")
+            print("------------------------------------------")
             new_pwd = new_pwd.encode()
             new_svc_en = svc.encode()
             new_pwd_hex = hash_script.make_password(new_svc_en, new_pwd)
@@ -66,12 +76,14 @@ def update_password():
             time.sleep(1)
             print("The password for " + svc +
                   " has been updated to: " + str(new_pwd_hex))
+            print("\n")
+            time.sleep(2)
 
             break
 
         elif option == "2":
             # remove
-
+            print("------------------------------------------")
             print("You would like to remove this service from the database..")
             print("------------------------------------------")
             time.sleep(1)
@@ -80,9 +92,15 @@ def update_password():
             if ru_sure == 'y':
                 time.sleep(1)
                 db_manager.db_remove(svc)
+                print("------------------------------------------")
                 print(svc + " has been successfully removed!")
+                print("\n")
+                time.sleep(2)
             elif ru_sure == 'n':
+                print("------------------------------------------")
                 print("Returning to menu...")
+                print("\n")
+                time.sleep(2)
 
             break
 
@@ -95,46 +113,36 @@ def retrieve_password():
         # encoding
         # svc = svc.encode()
         try:
-
             db_manager.db_chek(svc)
         except:
             print("There's an error!")
-        # if
-        #     continue
-        # else:
-        #     print("Service does not exist!")
-        #     break
 
         db_manager.db_grab(svc)
-        exit = input("Would you like to exit? ")
+        exit = input("Would you like to exit?(y/n) ")
 
         if exit == "y":
             break
         else:
             continue
-    #  select(svc,
-    # access database, check if svc matches name of service,
-    #  then display to screen
-    # integrate closing functionality so window closes
 
 
 def display_all():
 
-    db_manager.display_db()
+    while True:
+
+        time.sleep(1)
+
+        db_manager.display_db()
+        time.sleep(1)
+
+        exit = input("Would you like to exit?(y/n) ")
+
+        print("\n")
+
+        if exit == "y":
+
+            break
+        else:
+            continue
 
     # closing functionality
-
-
-# Create master password which will equal our secret key
-
-# encrypt passwords our selves
-
-# Encryption instructions:
-# 1. take in password
-# 2. provide salt + plaintext pw
-# 3. pass combo through hash algo
-# 4. output hashed password
-# 5. copy to clipboard
-# 4. store hash algo
-
-# Storing the plaintext password in DB makes no sense, because it's still easy to hack. A password manager exists to house all your encrypted passwords.
