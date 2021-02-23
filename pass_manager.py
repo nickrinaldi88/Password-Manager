@@ -1,22 +1,12 @@
-import hashlib
-from cryptography.fernet import Fernet
 import time
 import db_manager
 import hash_script
 import pyperclip
 
 
-# if master password = the secret key, provide access
-
-# create key for master PW?
-
-key = Fernet.generate_key()
-
-crypter = Fernet(key)  # create Fernet object
-
-
 def add_password():
     print("---------ADD A PASSWORD--------")
+    # take inputs
     svc = input("Enter Service: ")
     user = input("Enter your username: ")
     pwd = input("Enter your simple password: ")
@@ -44,17 +34,19 @@ def update_password():
     while True:
         svc = input("Enter the service would you like to update:  ")
 
-        try:
-            print("------------------------------------------")
-            time.sleep(1)
-            db_manager.db_chek(svc)
-        except:
-            print("there's an error")
+        time.sleep(1)
+        # check if svc exists in db
+        if db_manager.db_chek(svc) == False:
             break
+        else:
+            pass
 
+        # except:
+        #     print("there's an error")
+        #     break
         print("------------------------------------------")
         option = input(
-            "Would you like to update or remove the password from this service?(1/Update, 2/Remove): ")
+            "Would you like to update or remove the password from this service? (1/Update, 2/Remove): ")
 
         if option == "1":
 
@@ -88,7 +80,7 @@ def update_password():
             print("------------------------------------------")
             time.sleep(1)
             ru_sure = input(
-                "Are you sure you want to remove this password? (Y/N): ")
+                "Are you sure you want to remove this password? (y/n): ")
             if ru_sure == 'y':
                 time.sleep(1)
                 db_manager.db_remove(svc)
@@ -110,15 +102,19 @@ def retrieve_password():
     while True:
         svc = input(
             "Enter the service you want to retrieve the password from: ")
-        # encoding
-        # svc = svc.encode()
+        print("------------------------------------------")
+        time.sleep(1)
         try:
             db_manager.db_chek(svc)
+            print("------------------------------------------")
+
+            time.sleep(1)
         except:
+            print("------------------------------------------")
             print("There's an error!")
 
         db_manager.db_grab(svc)
-        exit = input("Would you like to exit?(y/n) ")
+        exit = input("Would you like to exit? (y/n) ")
 
         if exit == "y":
             break
@@ -137,9 +133,8 @@ def display_all():
 
         exit = input("Would you like to exit?(y/n) ")
 
-        print("\n")
-
         if exit == "y":
+            print("\n")
 
             break
         else:
