@@ -2,6 +2,25 @@ import time
 import db_manager
 import hash_script
 import pyperclip
+import os
+
+
+def first_time():
+    print("--------Hello---------")
+    time.sleep(1)
+    print("--------Welcome to Your Password Manager----------")
+    time.sleep(1)
+    master = "Please enter a master password (Keep this safe!): "
+    with open('master.txt', "w") as f:
+        f.write(master)
+
+
+def check_master(pwd):
+    with open('master.txt', "r") as f:
+        for line in f:
+            if pwd == line:
+                return True
+        return False
 
 
 def add_password():

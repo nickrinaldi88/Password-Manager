@@ -3,6 +3,7 @@ import pass_manager
 import pyperclip
 import time
 
+
 # creation connection object
 
 conn = sqlite3.connect("pw_manager.db")
