@@ -6,8 +6,8 @@ A simple password manager/generator. A master password is required by the user, 
 * -sqlite3
 
 ## Installing
-Download all files to same directory
-Run menu.py from text editor or command line.
+1. Download all files to same directory
+2. Run menu.py from text editor or command line.
 
 ## Authors
 
