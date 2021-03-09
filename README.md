@@ -11,7 +11,7 @@ Run menu.py from text editor or command line.
 
 ## Authors
 
-**Nicholas Rinladi** 
+**Nicholas Rinaldi** 
 
 ## License
 
