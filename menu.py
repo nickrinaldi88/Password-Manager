@@ -1,15 +1,15 @@
-
 import time
 import pass_manager
 import db_manager
 import os
 
 
-def login_success():
+def show_menu():
+
     print("----------Welcome to the Menu!----------")
     time.sleep(1)
     print("What would you like to do?")
-    print("1. Add ax new password")
+    print("1. Add a new password")
     print("2. Update/Remove a password")
     print("3. Retrieve a password")
     print("4. Display all passwords")
@@ -17,27 +17,21 @@ def login_success():
     print("\n")
 
 
-# only runs if file doesn't exist
-if not os.path.exists('master.txt'):
-    # the the master file doesn't exist
-    # run the first time function, else, run
-    pass_manager.first_time()
+def startup():
 
+    if not os.path.exists('master.txt'):
+        pass_manager.first_time()
+        db_manager.create_table()
 
-def grab_master():
-    with open('master.txt', 'r') as f:
-        for line in f:
-            master = line
+    if pass_manager.check_master():
+        print("----------You're in!----------")
+        time.sleep(0.5)
+        print("-"*30)
+        time.sleep(0.5)
 
-        return master
-
-
-pwd = grab_master()
-
-while True:
-
-    if pass_manager.check_master(pwd):
         while True:
+
+            show_menu()
             choice = input("Please enter your choice: ")
             print("\n")
             if choice == "1":
@@ -51,6 +45,10 @@ while True:
             elif choice == "5":
                 db_manager.close_db()
                 break
+
     else:
         print("Your master password is not correct. Try Again. ")
-        continue
+
+
+if __name__ == '__main__':
+    startup()
