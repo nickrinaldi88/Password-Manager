@@ -3,7 +3,6 @@ import pass_manager
 import db_manager
 import os
 
-
 def show_menu():
 
     print("----------Welcome to the Menu!----------")
@@ -15,7 +14,6 @@ def show_menu():
     print("4. Display all passwords")
     print("5. Exit")
     print("\n")
-
 
 def startup():
 
@@ -48,7 +46,6 @@ def startup():
 
     else:
         print("Your master password is not correct. Try Again. ")
-
 
 if __name__ == '__main__':
     startup()
