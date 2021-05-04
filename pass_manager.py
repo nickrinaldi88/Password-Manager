@@ -4,7 +4,6 @@ import hash_script
 import pyperclip
 import os
 
-
 def first_time():
     print("--------Hello---------")
     time.sleep(1)
@@ -13,7 +12,6 @@ def first_time():
     master = "Please enter a master password (Keep this safe!): "
     with open('master.txt', "w") as f:
         f.write(master)
-
 
 def check_master(pwd):
     with open('master.txt', "r") as f:
@@ -139,7 +137,6 @@ def retrieve_password():
             break
         else:
             continue
-
 
 def display_all():
 
